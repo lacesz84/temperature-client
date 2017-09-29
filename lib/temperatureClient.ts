@@ -21,7 +21,7 @@ class TemperatureClient {
     }
 
     private getUrl() {
-        return process.env.URL || 'http://pi.dreamscape.hu:3000';
+        return process.env.URL || 'http://pi.dreamscape.hu:3100';
     }
 }
 
