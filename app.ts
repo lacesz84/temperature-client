@@ -1,16 +1,11 @@
-import sshExec = require('ssh-exec');
+import { TemperatureClient } from './lib/temperatureClient';
 
-const options: IsshExecOptions = {
-    host: 'pi.dreamscape.hu',
-    user: 'pi',
-    port: 2298
-};
-const fileName = '/sys/bus/w1/devices/28-0115a83cebff/w1_slave';
+require('dotenv').config();
 
-const callBack = (n, data:string) => { 
-    const match = data.match(/t=(.*)/);
-    const temperature = parseInt(match[1]) / Math.pow(10, 3);
-    process.stdout.write(temperature.toString());
-};
+const client = new TemperatureClient();
 
-sshExec('cat ' + fileName, options, callBack);
+client.getTemperature().then((temperature) => {
+    process.stdout.write(temperature);
+}).catch((e) => {
+    console.log(e);
+});
