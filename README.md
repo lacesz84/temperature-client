@@ -3,5 +3,4 @@
   **Installation:**
    * git clone
    * npm install
-   * tsc app.ts
    * node app.js
